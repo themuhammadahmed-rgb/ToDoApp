@@ -1,0 +1,19 @@
+package com.example.todoapp.ViewModel
+
+import android.app.Application
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+
+@Suppress("UNCHECKED_CAST")
+class TaskViewModelFactory(
+    private val application
+    : Application
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return TaskViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel Class")
+    }
+}
