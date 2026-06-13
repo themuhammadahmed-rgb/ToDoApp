@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.todoapp.ViewModel.TaskViewModel
 import com.example.todoapp.data.room_database.TaskItem
+import com.example.todoapp.ui.Screens.TaskEditorDialog
 import com.example.todoapp.ui.Screens.ToDoItem
 import com.example.todoapp.ui.theme.darkGrey
 import com.example.todoapp.ui.theme.grey
@@ -48,7 +49,10 @@ fun ToDoListScreen(viewModel: TaskViewModel) {
     Scaffold(
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = {},
+                onClick = {
+                    taskToEdit = null
+                    showEditorDialog = true
+                },
                 shape = RoundedCornerShape(20.dp),
                 containerColor = darkGrey,
                 contentColor = Color.White,
@@ -115,5 +119,25 @@ fun ToDoListScreen(viewModel: TaskViewModel) {
                 }
             }
         }
+    }
+    if (showEditorDialog) {
+        TaskEditorDialog(
+            task = taskToEdit,
+            onSave = { newName ->
+                if ((taskToEdit == null)) {
+                    viewModel.addTask(TaskItem(taskName = newName, isDone = false))
+                } else {
+                    taskToEdit?.let { currentTask ->
+                        viewModel.updateTask(currentTask.copy(taskName = newName))
+                    }
+                }
+                showEditorDialog = false
+                taskToEdit = null
+            },
+            onCancel = {
+                showEditorDialog = false
+                taskToEdit = null
+            }
+        )
     }
 }
