@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.Screens
+package com.example.todoapp.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

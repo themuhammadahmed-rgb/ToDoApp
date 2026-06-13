@@ -33,8 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.todoapp.ViewModel.TaskViewModel
 import com.example.todoapp.data.room_database.TaskItem
-import com.example.todoapp.ui.Screens.TaskEditorDialog
-import com.example.todoapp.ui.Screens.ToDoItem
 import com.example.todoapp.ui.theme.darkGrey
 import com.example.todoapp.ui.theme.grey
 

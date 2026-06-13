@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.Screens
+package com.example.todoapp.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
@@ -75,7 +75,7 @@ fun ToDoItem(
             )
             Row() {
                 IconButton(
-                    onClick = {onEditClick}) {
+                    onClick = onEditClick) {
                     Icon(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Edit-Task",
@@ -84,7 +84,7 @@ fun ToDoItem(
                     )
                 }
                 IconButton(
-                    onClick = {onDeleteClick}) {
+                    onClick = onDeleteClick) {
                     Icon(
                         imageVector = Icons.Default.DeleteOutline,
                         contentDescription = "Delete-Task",
