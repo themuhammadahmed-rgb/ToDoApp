@@ -1,0 +1,43 @@
+📝 My Tasks — Todo App
+
+A simple Android Todo app built with Kotlin, MVVM Architecture and Room Database. Built as a learning project to understand modern Android development before my internship.
+
+
+Features
+
+
+Add, edit and delete tasks
+Data saved locally using Room Database
+UI updates automatically with LiveData
+
+
+
+Tech Stack
+
+
+Kotlin
+MVVM Architecture
+Room Database
+LiveData & ViewModel
+RecyclerView
+
+
+
+Architecture
+
+UI → ViewModel → Repository → Room Database
+
+
+What I Learned
+
+
+How MVVM architecture works in a real project
+How Room Database stores data locally
+How ViewModel survives screen rotation
+How LiveData updates the UI automatically
+
+
+
+Credits
+
+Built by following the Neat Roots tutorial on YouTube.
