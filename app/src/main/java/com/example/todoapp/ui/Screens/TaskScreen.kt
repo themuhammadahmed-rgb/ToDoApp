@@ -89,7 +89,15 @@ fun ToDoListScreen(viewModel: TaskViewModel) {
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     contentPadding = PaddingValues(bottom = 80.dp)
                 ) {
-
+                    items(
+                        items = tasks,
+                        key = {it.id}
+                    ){ task ->
+                        ToDoItem(
+                            item = task,
+                            onEditClick = {}
+                        )
+                    }
                 }
             }
         }
