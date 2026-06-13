@@ -20,6 +20,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.todoapp.ViewModel.TaskViewModel
+import com.example.todoapp.data.room_database.TaskItem
 import com.example.todoapp.ui.Screens.ToDoItem
 import com.example.todoapp.ui.theme.darkGrey
 import com.example.todoapp.ui.theme.grey
@@ -35,6 +40,10 @@ import com.example.todoapp.ui.theme.grey
 @Composable
 fun ToDoListScreen(viewModel: TaskViewModel) {
     val tasks by viewModel.allTask.collectAsState()
+
+    var taskToEdit by remember { mutableStateOf<TaskItem?>(null) }
+
+    var showEditorDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         floatingActionButton = {
@@ -91,11 +100,16 @@ fun ToDoListScreen(viewModel: TaskViewModel) {
                 ) {
                     items(
                         items = tasks,
-                        key = {it.id}
-                    ){ task ->
+                        key = { it.id }
+                    ) { task ->
                         ToDoItem(
                             item = task,
-                            onEditClick = {}
+                            onEditClick = {
+                                taskToEdit = task
+                                showEditorDialog = true
+                            },
+                            onDeleteClick = { viewModel.deleteTask(task) },
+                            onCheckChange = { checked -> viewModel.updateTask(task.copy(isDone = checked)) }
                         )
                     }
                 }
